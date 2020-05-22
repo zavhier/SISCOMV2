@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SISCOMModelStoreContainer" CdmEntityContainer="SISCOMEntities">
+    <EntitySetMapping Name="ACCESO">
+      <EntityTypeMapping TypeName="SISCOMModel.ACCESO">
+        <MappingFragment StoreEntitySet="ACCESO">
+          <ScalarProperty Name="PERMISO_ID" ColumnName="PERMISO_ID" />
+          <ScalarProperty Name="FORMULARIO_ID" ColumnName="FORMULARIO_ID" />
+          <ScalarProperty Name="ACCESO_ID" ColumnName="ACCESO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BITACORA">
+      <EntityTypeMapping TypeName="SISCOMModel.BITACORA">
+        <MappingFragment StoreEntitySet="BITACORA">
+          <ScalarProperty Name="BITACORA_ID" ColumnName="BITACORA_ID" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
+          <ScalarProperty Name="TIPO_MENSAJE" ColumnName="TIPO_MENSAJE" />
+          <ScalarProperty Name="MENSAJE" ColumnName="MENSAJE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FACTURA">
+      <EntityTypeMapping TypeName="SISCOMModel.FACTURA">
+        <MappingFragment StoreEntitySet="FACTURA">
+          <ScalarProperty Name="FACTURA_ID" ColumnName="FACTURA_ID" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="ORDEN_PROD_ID" ColumnName="ORDEN_PROD_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FACTURA_DETALLE_POS">
+      <EntityTypeMapping TypeName="SISCOMModel.FACTURA_DETALLE_POS">
+        <MappingFragment StoreEntitySet="FACTURA_DETALLE_POS">
+          <ScalarProperty Name="FACTURA_DETALLE_POS_ID" ColumnName="FACTURA_DETALLE_POS_ID" />
+          <ScalarProperty Name="FACTURA_ID" ColumnName="FACTURA_ID" />
+          <ScalarProperty Name="POSICION" ColumnName="POSICION" />
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="PRECIO_UNITARIO" ColumnName="PRECIO_UNITARIO" />
+          <ScalarProperty Name="INSUMO_ID" ColumnName="INSUMO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IDIOMA">
+      <EntityTypeMapping TypeName="SISCOMModel.IDIOMA">
+        <MappingFragment StoreEntitySet="IDIOMA">
+          <ScalarProperty Name="IDIOMA_ID" ColumnName="IDIOMA_ID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INSUMO">
+      <EntityTypeMapping TypeName="SISCOMModel.INSUMO">
+        <MappingFragment StoreEntitySet="INSUMO">
+          <ScalarProperty Name="INSUMO_ID" ColumnName="INSUMO_ID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="UNIDAD_DE_MEDIDA" ColumnName="UNIDAD_DE_MEDIDA" />
+          <ScalarProperty Name="CANTIDAD_MINIMA" ColumnName="CANTIDAD_MINIMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDEN_COMPRA_DETALLE_POS">
+      <EntityTypeMapping TypeName="SISCOMModel.ORDEN_COMPRA_DETALLE_POS">
+        <MappingFragment StoreEntitySet="ORDEN_COMPRA_DETALLE_POS">
+          <ScalarProperty Name="ODEN_COMPRA_DETALLE_POS_ID" ColumnName="ODEN_COMPRA_DETALLE_POS_ID" />
+          <ScalarProperty Name="ORDEN_COMPRA_ID" ColumnName="ORDEN_COMPRA_ID" />
+          <ScalarProperty Name="POSICION" ColumnName="POSICION" />
+          <ScalarProperty Name="INSUMO_ID" ColumnName="INSUMO_ID" />
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="TEXTO" ColumnName="TEXTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDEN_DE_COMPRA">
+      <EntityTypeMapping TypeName="SISCOMModel.ORDEN_DE_COMPRA">
+        <MappingFragment StoreEntitySet="ORDEN_DE_COMPRA">
+          <ScalarProperty Name="ORDEN_COMPRA_ID" ColumnName="ORDEN_COMPRA_ID" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="PROVEEDOR_ID" ColumnName="PROVEEDOR_ID" />
+          <ScalarProperty Name="SOLICITUD_PEDIDO_ID" ColumnName="SOLICITUD_PEDIDO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDEN_DE_PRODUCCION">
+      <EntityTypeMapping TypeName="SISCOMModel.ORDEN_DE_PRODUCCION">
+        <MappingFragment StoreEntitySet="ORDEN_DE_PRODUCCION">
+          <ScalarProperty Name="ORDEN_PROD_ID" ColumnName="ORDEN_PROD_ID" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="TEXTO" ColumnName="TEXTO" />
+          <ScalarProperty Name="FECHA_LIMITE" ColumnName="FECHA_LIMITE" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="NOMBRE_CLIENTE" ColumnName="NOMBRE_CLIENTE" />
+          <ScalarProperty Name="TELEFONO_CLIENTE" ColumnName="TELEFONO_CLIENTE" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDEN_DE_PRODUCCION_DETALLE_POS">
+      <EntityTypeMapping TypeName="SISCOMModel.ORDEN_DE_PRODUCCION_DETALLE_POS">
+        <MappingFragment StoreEntitySet="ORDEN_DE_PRODUCCION_DETALLE_POS">
+          <ScalarProperty Name="ORDEN_PROD_DETALLE_POS" ColumnName="ORDEN_PROD_DETALLE_POS" />
+          <ScalarProperty Name="ORDEN_PROD_ID" ColumnName="ORDEN_PROD_ID" />
+          <ScalarProperty Name="POSICION" ColumnName="POSICION" />
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="TEXTO" ColumnName="TEXTO" />
+          <ScalarProperty Name="INSUMO_ID" ColumnName="INSUMO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PERMISO">
+      <EntityTypeMapping TypeName="SISCOMModel.PERMISO">
+        <MappingFragment StoreEntitySet="PERMISO">
+          <ScalarProperty Name="PERMISO_ID" ColumnName="PERMISO_ID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROVEEDOR">
+      <EntityTypeMapping TypeName="SISCOMModel.PROVEEDOR">
+        <MappingFragment StoreEntitySet="PROVEEDOR">
+          <ScalarProperty Name="PROVEEDOR_ID" ColumnName="PROVEEDOR_ID" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+          <ScalarProperty Name="CODIGO_POSTAL" ColumnName="CODIGO_POSTAL" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REMITO">
+      <EntityTypeMapping TypeName="SISCOMModel.REMITO">
+        <MappingFragment StoreEntitySet="REMITO">
+          <ScalarProperty Name="REMITO_ID" ColumnName="REMITO_ID" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="ORDEN_COMPRA_ID" ColumnName="ORDEN_COMPRA_ID" />
+          <ScalarProperty Name="PROVEEDOR_ID" ColumnName="PROVEEDOR_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REMITO_DETALLE_POS">
+      <EntityTypeMapping TypeName="SISCOMModel.REMITO_DETALLE_POS">
+        <MappingFragment StoreEntitySet="REMITO_DETALLE_POS">
+          <ScalarProperty Name="REMITO_DETALLE_POS_ID" ColumnName="REMITO_DETALLE_POS_ID" />
+          <ScalarProperty Name="REMITO_ID" ColumnName="REMITO_ID" />
+          <ScalarProperty Name="INSUMO_ID" ColumnName="INSUMO_ID" />
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="POSICION" ColumnName="POSICION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SOLICITUD_PEDIDO">
+      <EntityTypeMapping TypeName="SISCOMModel.SOLICITUD_PEDIDO">
+        <MappingFragment StoreEntitySet="SOLICITUD_PEDIDO">
+          <ScalarProperty Name="SOLICITUD_PEDIDO_ID" ColumnName="SOLICITUD_PEDIDO_ID" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="TEXTO" ColumnName="TEXTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SOLICITUD_PEDIDO_DETALLE_POS">
+      <EntityTypeMapping TypeName="SISCOMModel.SOLICITUD_PEDIDO_DETALLE_POS">
+        <MappingFragment StoreEntitySet="SOLICITUD_PEDIDO_DETALLE_POS">
+          <ScalarProperty Name="SOLICITUD_PEDIDO_DETALLE_POST_ID" ColumnName="SOLICITUD_PEDIDO_DETALLE_POST_ID" />
+          <ScalarProperty Name="SOLICITUD_PEDIDO_ID" ColumnName="SOLICITUD_PEDIDO_ID" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="INSUMO_ID" ColumnName="INSUMO_ID" />
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="TEXTO" ColumnName="TEXTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STOCK">
+      <EntityTypeMapping TypeName="SISCOMModel.STOCK">
+        <MappingFragment StoreEntitySet="STOCK">
+          <ScalarProperty Name="STOCK_ID" ColumnName="STOCK_ID" />
+          <ScalarProperty Name="INSUMO_ID" ColumnName="INSUMO_ID" />
+          <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+          <ScalarProperty Name="MOTIVO_MOVIMIENTO" ColumnName="MOTIVO_MOVIMIENTO" />
+          <ScalarProperty Name="TIPO_MOVIMIENTO" ColumnName="TIPO_MOVIMIENTO" />
+          <ScalarProperty Name="CANTIDAD_MODIFICADA" ColumnName="CANTIDAD_MODIFICADA" />
+          <ScalarProperty Name="CANTIDAD_DISPONIBLE" ColumnName="CANTIDAD_DISPONIBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEXTO">
+      <EntityTypeMapping TypeName="SISCOMModel.TEXTO">
+        <MappingFragment StoreEntitySet="TEXTO">
+          <ScalarProperty Name="TEXTO_ID" ColumnName="TEXTO_ID" />
+          <ScalarProperty Name="IDIOMA_ID" ColumnName="IDIOMA_ID" />
+          <ScalarProperty Name="FORMULARIO_ID" ColumnName="FORMULARIO_ID" />
+          <ScalarProperty Name="COMPONEMTE_ID" ColumnName="COMPONEMTE_ID" />
+          <ScalarProperty Name="TEXTO1" ColumnName="TEXTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIO">
+      <EntityTypeMapping TypeName="SISCOMModel.USUARIO">
+        <MappingFragment StoreEntitySet="USUARIO">
+          <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="DIGITO_VERIFICADOR" ColumnName="DIGITO_VERIFICADOR" />
+          <ScalarProperty Name="SECTOR" ColumnName="SECTOR" />
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="PERMISO_ID" ColumnName="PERMISO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="INSUMO_PROVEEDOR" TypeName="SISCOMModel.INSUMO_PROVEEDOR" StoreEntitySet="INSUMO_PROVEEDOR">
+      <EndProperty Name="INSUMO">
+        <ScalarProperty Name="INSUMO_ID" ColumnName="INSUMO_ID" />
+      </EndProperty>
+      <EndProperty Name="PROVEEDOR">
+        <ScalarProperty Name="PROVEEDOR_ID" ColumnName="PROVEEDOR_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

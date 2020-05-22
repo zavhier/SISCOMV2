@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SISCOMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ACCESO">
+    <Key>
+      <PropertyRef Name="ACCESO_ID" />
+    </Key>
+    <Property Name="PERMISO_ID" Type="Int32" />
+    <Property Name="FORMULARIO_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ACCESO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="BITACORA">
+    <Key>
+      <PropertyRef Name="BITACORA_ID" />
+    </Key>
+    <Property Name="BITACORA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FECHA" Type="DateTime" Precision="3" />
+    <Property Name="USUARIO_ID" Type="Int32" />
+    <Property Name="TIPO_MENSAJE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MENSAJE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="FACTURA">
+    <Key>
+      <PropertyRef Name="FACTURA_ID" />
+    </Key>
+    <Property Name="FACTURA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FECHA" Type="DateTime" Precision="0" />
+    <Property Name="ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ORDEN_PROD_ID" Type="Int32" />
+    <NavigationProperty Name="FACTURA_DETALLE_POS" Relationship="Self.FK_FACTURA_DETALLE_POS_FACTURA" FromRole="FACTURA" ToRole="FACTURA_DETALLE_POS" />
+  </EntityType>
+  <EntityType Name="FACTURA_DETALLE_POS">
+    <Key>
+      <PropertyRef Name="FACTURA_DETALLE_POS_ID" />
+      <PropertyRef Name="FACTURA_ID" />
+      <PropertyRef Name="INSUMO_ID" />
+    </Key>
+    <Property Name="FACTURA_DETALLE_POS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FACTURA_ID" Type="Int32" Nullable="false" />
+    <Property Name="POSICION" Type="Int32" />
+    <Property Name="CANTIDAD" Type="Int32" />
+    <Property Name="PRECIO_UNITARIO" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="INSUMO_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="FACTURA" Relationship="Self.FK_FACTURA_DETALLE_POS_FACTURA" FromRole="FACTURA_DETALLE_POS" ToRole="FACTURA" />
+    <NavigationProperty Name="INSUMO" Relationship="Self.FK_FACTURA_DETALLE_POS_INSUMO" FromRole="FACTURA_DETALLE_POS" ToRole="INSUMO" />
+  </EntityType>
+  <EntityType Name="IDIOMA">
+    <Key>
+      <PropertyRef Name="IDIOMA_ID" />
+    </Key>
+    <Property Name="IDIOMA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="INSUMO">
+    <Key>
+      <PropertyRef Name="INSUMO_ID" />
+    </Key>
+    <Property Name="INSUMO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UNIDAD_DE_MEDIDA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CANTIDAD_MINIMA" Type="Int32" />
+    <NavigationProperty Name="FACTURA_DETALLE_POS" Relationship="Self.FK_FACTURA_DETALLE_POS_INSUMO" FromRole="INSUMO" ToRole="FACTURA_DETALLE_POS" />
+    <NavigationProperty Name="ORDEN_COMPRA_DETALLE_POS" Relationship="Self.FK_ORDEN_COMPRA_DETALLE_POS_INSUMO" FromRole="INSUMO" ToRole="ORDEN_COMPRA_DETALLE_POS" />
+    <NavigationProperty Name="ORDEN_DE_PRODUCCION_DETALLE_POS" Relationship="Self.FK_ORDEN_DE_PRODUCCION_DETALLE_POS_INSUMO" FromRole="INSUMO" ToRole="ORDEN_DE_PRODUCCION_DETALLE_POS" />
+    <NavigationProperty Name="SOLICITUD_PEDIDO_DETALLE_POS" Relationship="Self.FK_SOLICITUD_PEDIDO_DETALLE_POS_INSUMO" FromRole="INSUMO" ToRole="SOLICITUD_PEDIDO_DETALLE_POS" />
+    <NavigationProperty Name="STOCK" Relationship="Self.FK_STOCK_INSUMO" FromRole="INSUMO" ToRole="STOCK" />
+    <NavigationProperty Name="PROVEEDOR" Relationship="Self.INSUMO_PROVEEDOR" FromRole="INSUMO" ToRole="PROVEEDOR" />
+  </EntityType>
+  <EntityType Name="ORDEN_COMPRA_DETALLE_POS">
+    <Key>
+      <PropertyRef Name="ODEN_COMPRA_DETALLE_POS_ID" />
+      <PropertyRef Name="ORDEN_COMPRA_ID" />
+      <PropertyRef Name="INSUMO_ID" />
+    </Key>
+    <Property Name="ODEN_COMPRA_DETALLE_POS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ORDEN_COMPRA_ID" Type="Int32" Nullable="false" />
+    <Property Name="POSICION" Type="Int32" />
+    <Property Name="INSUMO_ID" Type="Int32" Nullable="false" />
+    <Property Name="CANTIDAD" Type="Int32" />
+    <Property Name="TEXTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="INSUMO" Relationship="Self.FK_ORDEN_COMPRA_DETALLE_POS_INSUMO" FromRole="ORDEN_COMPRA_DETALLE_POS" ToRole="INSUMO" />
+  </EntityType>
+  <EntityType Name="ORDEN_DE_COMPRA">
+    <Key>
+      <PropertyRef Name="ORDEN_COMPRA_ID" />
+      <PropertyRef Name="PROVEEDOR_ID" />
+    </Key>
+    <Property Name="ORDEN_COMPRA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FECHA" Type="DateTime" Precision="0" />
+    <Property Name="ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PROVEEDOR_ID" Type="Int32" Nullable="false" />
+    <Property Name="SOLICITUD_PEDIDO_ID" Type="Int32" />
+    <NavigationProperty Name="PROVEEDOR" Relationship="Self.FK_ORDEN_DE_COMPRA_PROVEEDOR" FromRole="ORDEN_DE_COMPRA" ToRole="PROVEEDOR" />
+  </EntityType>
+  <EntityType Name="ORDEN_DE_PRODUCCION">
+    <Key>
+      <PropertyRef Name="ORDEN_PROD_ID" />
+    </Key>
+    <Property Name="ORDEN_PROD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FECHA" Type="DateTime" Precision="0" />
+    <Property Name="TEXTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FECHA_LIMITE" Type="DateTime" Precision="0" />
+    <Property Name="ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE_CLIENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONO_CLIENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ORDEN_DE_PRODUCCION_DETALLE_POS" Relationship="Self.FK_ORDEN_DE_PRODUCCION_DETALLE_POS_ORDEN_DE_PRODUCCION" FromRole="ORDEN_DE_PRODUCCION" ToRole="ORDEN_DE_PRODUCCION_DETALLE_POS" />
+  </EntityType>
+  <EntityType Name="ORDEN_DE_PRODUCCION_DETALLE_POS">
+    <Key>
+      <PropertyRef Name="ORDEN_PROD_DETALLE_POS" />
+      <PropertyRef Name="ORDEN_PROD_ID" />
+      <PropertyRef Name="INSUMO_ID" />
+    </Key>
+    <Property Name="ORDEN_PROD_DETALLE_POS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ORDEN_PROD_ID" Type="Int32" Nullable="false" />
+    <Property Name="POSICION" Type="Int32" />
+    <Property Name="CANTIDAD" Type="Int32" />
+    <Property Name="TEXTO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="INSUMO_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="INSUMO" Relationship="Self.FK_ORDEN_DE_PRODUCCION_DETALLE_POS_INSUMO" FromRole="ORDEN_DE_PRODUCCION_DETALLE_POS" ToRole="INSUMO" />
+    <NavigationProperty Name="ORDEN_DE_PRODUCCION" Relationship="Self.FK_ORDEN_DE_PRODUCCION_DETALLE_POS_ORDEN_DE_PRODUCCION" FromRole="ORDEN_DE_PRODUCCION_DETALLE_POS" ToRole="ORDEN_DE_PRODUCCION" />
+  </EntityType>
+  <EntityType Name="PERMISO">
+    <Key>
+      <PropertyRef Name="PERMISO_ID" />
+    </Key>
+    <Property Name="PERMISO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PROVEEDOR">
+    <Key>
+      <PropertyRef Name="PROVEEDOR_ID" />
+    </Key>
+    <Property Name="PROVEEDOR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CODIGO_POSTAL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ORDEN_DE_COMPRA" Relationship="Self.FK_ORDEN_DE_COMPRA_PROVEEDOR" FromRole="PROVEEDOR" ToRole="ORDEN_DE_COMPRA" />
+    <NavigationProperty Name="REMITO" Relationship="Self.FK_REMITO_PROVEEDOR" FromRole="PROVEEDOR" ToRole="REMITO" />
+    <NavigationProperty Name="INSUMO" Relationship="Self.INSUMO_PROVEEDOR" FromRole="PROVEEDOR" ToRole="INSUMO" />
+  </EntityType>
+  <EntityType Name="REMITO">
+    <Key>
+      <PropertyRef Name="REMITO_ID" />
+      <PropertyRef Name="PROVEEDOR_ID" />
+    </Key>
+    <Property Name="REMITO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FECHA" Type="DateTime" Precision="0" />
+    <Property Name="ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ORDEN_COMPRA_ID" Type="Int32" />
+    <Property Name="PROVEEDOR_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PROVEEDOR" Relationship="Self.FK_REMITO_PROVEEDOR" FromRole="REMITO" ToRole="PROVEEDOR" />
+  </EntityType>
+  <EntityType Name="REMITO_DETALLE_POS">
+    <Key>
+      <PropertyRef Name="REMITO_DETALLE_POS_ID" />
+      <PropertyRef Name="REMITO_ID" />
+    </Key>
+    <Property Name="REMITO_DETALLE_POS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REMITO_ID" Type="Int32" Nullable="false" />
+    <Property Name="INSUMO_ID" Type="Int32" />
+    <Property Name="CANTIDAD" Type="Int32" />
+    <Property Name="POSICION" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SOLICITUD_PEDIDO">
+    <Key>
+      <PropertyRef Name="SOLICITUD_PEDIDO_ID" />
+    </Key>
+    <Property Name="SOLICITUD_PEDIDO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FECHA" Type="DateTime" Precision="0" />
+    <Property Name="ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TEXTO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SOLICITUD_PEDIDO_DETALLE_POS" Relationship="Self.FK_SOLICITUD_PEDIDO_DETALLE_POS_SOLICITUD_PEDIDO" FromRole="SOLICITUD_PEDIDO" ToRole="SOLICITUD_PEDIDO_DETALLE_POS" />
+  </EntityType>
+  <EntityType Name="SOLICITUD_PEDIDO_DETALLE_POS">
+    <Key>
+      <PropertyRef Name="SOLICITUD_PEDIDO_DETALLE_POST_ID" />
+      <PropertyRef Name="SOLICITUD_PEDIDO_ID" />
+      <PropertyRef Name="INSUMO_ID" />
+    </Key>
+    <Property Name="SOLICITUD_PEDIDO_DETALLE_POST_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SOLICITUD_PEDIDO_ID" Type="Int32" Nullable="false" />
+    <Property Name="ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="INSUMO_ID" Type="Int32" Nullable="false" />
+    <Property Name="CANTIDAD" Type="Int32" />
+    <Property Name="TEXTO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="INSUMO" Relationship="Self.FK_SOLICITUD_PEDIDO_DETALLE_POS_INSUMO" FromRole="SOLICITUD_PEDIDO_DETALLE_POS" ToRole="INSUMO" />
+    <NavigationProperty Name="SOLICITUD_PEDIDO" Relationship="Self.FK_SOLICITUD_PEDIDO_DETALLE_POS_SOLICITUD_PEDIDO" FromRole="SOLICITUD_PEDIDO_DETALLE_POS" ToRole="SOLICITUD_PEDIDO" />
+  </EntityType>
+  <EntityType Name="STOCK">
+    <Key>
+      <PropertyRef Name="STOCK_ID" />
+      <PropertyRef Name="INSUMO_ID" />
+    </Key>
+    <Property Name="STOCK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="INSUMO_ID" Type="Int32" Nullable="false" />
+    <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Precision="3" />
+    <Property Name="MOTIVO_MOVIMIENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TIPO_MOVIMIENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CANTIDAD_MODIFICADA" Type="Int32" />
+    <Property Name="CANTIDAD_DISPONIBLE" Type="Int32" />
+    <NavigationProperty Name="INSUMO" Relationship="Self.FK_STOCK_INSUMO" FromRole="STOCK" ToRole="INSUMO" />
+  </EntityType>
+  <EntityType Name="TEXTO">
+    <Key>
+      <PropertyRef Name="TEXTO_ID" />
+      <PropertyRef Name="IDIOMA_ID" />
+      <PropertyRef Name="FORMULARIO_ID" />
+      <PropertyRef Name="COMPONEMTE_ID" />
+    </Key>
+    <Property Name="TEXTO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDIOMA_ID" Type="Int32" Nullable="false" />
+    <Property Name="FORMULARIO_ID" Type="Int32" Nullable="false" />
+    <Property Name="COMPONEMTE_ID" Type="Int32" Nullable="false" />
+    <Property Name="TEXTO1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="USUARIO_ID" />
+      <PropertyRef Name="DNI" />
+    </Key>
+    <Property Name="USUARIO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DIGITO_VERIFICADOR" Type="Int32" />
+    <Property Name="SECTOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DNI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PERMISO_ID" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_FACTURA_DETALLE_POS_FACTURA">
+    <End Role="FACTURA" Type="Self.FACTURA" Multiplicity="1" />
+    <End Role="FACTURA_DETALLE_POS" Type="Self.FACTURA_DETALLE_POS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FACTURA">
+        <PropertyRef Name="FACTURA_ID" />
+      </Principal>
+      <Dependent Role="FACTURA_DETALLE_POS">
+        <PropertyRef Name="FACTURA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FACTURA_DETALLE_POS_INSUMO">
+    <End Role="INSUMO" Type="Self.INSUMO" Multiplicity="1" />
+    <End Role="FACTURA_DETALLE_POS" Type="Self.FACTURA_DETALLE_POS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INSUMO">
+        <PropertyRef Name="INSUMO_ID" />
+      </Principal>
+      <Dependent Role="FACTURA_DETALLE_POS">
+        <PropertyRef Name="INSUMO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_COMPRA_DETALLE_POS_INSUMO">
+    <End Role="INSUMO" Type="Self.INSUMO" Multiplicity="1" />
+    <End Role="ORDEN_COMPRA_DETALLE_POS" Type="Self.ORDEN_COMPRA_DETALLE_POS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INSUMO">
+        <PropertyRef Name="INSUMO_ID" />
+      </Principal>
+      <Dependent Role="ORDEN_COMPRA_DETALLE_POS">
+        <PropertyRef Name="INSUMO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_DE_PRODUCCION_DETALLE_POS_INSUMO">
+    <End Role="INSUMO" Type="Self.INSUMO" Multiplicity="1" />
+    <End Role="ORDEN_DE_PRODUCCION_DETALLE_POS" Type="Self.ORDEN_DE_PRODUCCION_DETALLE_POS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INSUMO">
+        <PropertyRef Name="INSUMO_ID" />
+      </Principal>
+      <Dependent Role="ORDEN_DE_PRODUCCION_DETALLE_POS">
+        <PropertyRef Name="INSUMO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOLICITUD_PEDIDO_DETALLE_POS_INSUMO">
+    <End Role="INSUMO" Type="Self.INSUMO" Multiplicity="1" />
+    <End Role="SOLICITUD_PEDIDO_DETALLE_POS" Type="Self.SOLICITUD_PEDIDO_DETALLE_POS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INSUMO">
+        <PropertyRef Name="INSUMO_ID" />
+      </Principal>
+      <Dependent Role="SOLICITUD_PEDIDO_DETALLE_POS">
+        <PropertyRef Name="INSUMO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STOCK_INSUMO">
+    <End Role="INSUMO" Type="Self.INSUMO" Multiplicity="1" />
+    <End Role="STOCK" Type="Self.STOCK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INSUMO">
+        <PropertyRef Name="INSUMO_ID" />
+      </Principal>
+      <Dependent Role="STOCK">
+        <PropertyRef Name="INSUMO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_DE_COMPRA_PROVEEDOR">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+    <End Role="ORDEN_DE_COMPRA" Type="Self.ORDEN_DE_COMPRA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="PROVEEDOR_ID" />
+      </Principal>
+      <Dependent Role="ORDEN_DE_COMPRA">
+        <PropertyRef Name="PROVEEDOR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_DE_PRODUCCION_DETALLE_POS_ORDEN_DE_PRODUCCION">
+    <End Role="ORDEN_DE_PRODUCCION" Type="Self.ORDEN_DE_PRODUCCION" Multiplicity="1" />
+    <End Role="ORDEN_DE_PRODUCCION_DETALLE_POS" Type="Self.ORDEN_DE_PRODUCCION_DETALLE_POS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDEN_DE_PRODUCCION">
+        <PropertyRef Name="ORDEN_PROD_ID" />
+      </Principal>
+      <Dependent Role="ORDEN_DE_PRODUCCION_DETALLE_POS">
+        <PropertyRef Name="ORDEN_PROD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REMITO_PROVEEDOR">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+    <End Role="REMITO" Type="Self.REMITO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="PROVEEDOR_ID" />
+      </Principal>
+      <Dependent Role="REMITO">
+        <PropertyRef Name="PROVEEDOR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOLICITUD_PEDIDO_DETALLE_POS_SOLICITUD_PEDIDO">
+    <End Role="SOLICITUD_PEDIDO" Type="Self.SOLICITUD_PEDIDO" Multiplicity="1" />
+    <End Role="SOLICITUD_PEDIDO_DETALLE_POS" Type="Self.SOLICITUD_PEDIDO_DETALLE_POS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOLICITUD_PEDIDO">
+        <PropertyRef Name="SOLICITUD_PEDIDO_ID" />
+      </Principal>
+      <Dependent Role="SOLICITUD_PEDIDO_DETALLE_POS">
+        <PropertyRef Name="SOLICITUD_PEDIDO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="INSUMO_PROVEEDOR">
+    <End Role="INSUMO" Type="Self.INSUMO" Multiplicity="*" />
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="SISCOMEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ACCESO" EntityType="Self.ACCESO" />
+    <EntitySet Name="BITACORA" EntityType="Self.BITACORA" />
+    <EntitySet Name="FACTURA" EntityType="Self.FACTURA" />
+    <EntitySet Name="FACTURA_DETALLE_POS" EntityType="Self.FACTURA_DETALLE_POS" />
+    <EntitySet Name="IDIOMA" EntityType="Self.IDIOMA" />
+    <EntitySet Name="INSUMO" EntityType="Self.INSUMO" />
+    <EntitySet Name="ORDEN_COMPRA_DETALLE_POS" EntityType="Self.ORDEN_COMPRA_DETALLE_POS" />
+    <EntitySet Name="ORDEN_DE_COMPRA" EntityType="Self.ORDEN_DE_COMPRA" />
+    <EntitySet Name="ORDEN_DE_PRODUCCION" EntityType="Self.ORDEN_DE_PRODUCCION" />
+    <EntitySet Name="ORDEN_DE_PRODUCCION_DETALLE_POS" EntityType="Self.ORDEN_DE_PRODUCCION_DETALLE_POS" />
+    <EntitySet Name="PERMISO" EntityType="Self.PERMISO" />
+    <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" />
+    <EntitySet Name="REMITO" EntityType="Self.REMITO" />
+    <EntitySet Name="REMITO_DETALLE_POS" EntityType="Self.REMITO_DETALLE_POS" />
+    <EntitySet Name="SOLICITUD_PEDIDO" EntityType="Self.SOLICITUD_PEDIDO" />
+    <EntitySet Name="SOLICITUD_PEDIDO_DETALLE_POS" EntityType="Self.SOLICITUD_PEDIDO_DETALLE_POS" />
+    <EntitySet Name="STOCK" EntityType="Self.STOCK" />
+    <EntitySet Name="TEXTO" EntityType="Self.TEXTO" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+    <AssociationSet Name="FK_FACTURA_DETALLE_POS_FACTURA" Association="Self.FK_FACTURA_DETALLE_POS_FACTURA">
+      <End Role="FACTURA" EntitySet="FACTURA" />
+      <End Role="FACTURA_DETALLE_POS" EntitySet="FACTURA_DETALLE_POS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FACTURA_DETALLE_POS_INSUMO" Association="Self.FK_FACTURA_DETALLE_POS_INSUMO">
+      <End Role="INSUMO" EntitySet="INSUMO" />
+      <End Role="FACTURA_DETALLE_POS" EntitySet="FACTURA_DETALLE_POS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_COMPRA_DETALLE_POS_INSUMO" Association="Self.FK_ORDEN_COMPRA_DETALLE_POS_INSUMO">
+      <End Role="INSUMO" EntitySet="INSUMO" />
+      <End Role="ORDEN_COMPRA_DETALLE_POS" EntitySet="ORDEN_COMPRA_DETALLE_POS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_DE_PRODUCCION_DETALLE_POS_INSUMO" Association="Self.FK_ORDEN_DE_PRODUCCION_DETALLE_POS_INSUMO">
+      <End Role="INSUMO" EntitySet="INSUMO" />
+      <End Role="ORDEN_DE_PRODUCCION_DETALLE_POS" EntitySet="ORDEN_DE_PRODUCCION_DETALLE_POS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOLICITUD_PEDIDO_DETALLE_POS_INSUMO" Association="Self.FK_SOLICITUD_PEDIDO_DETALLE_POS_INSUMO">
+      <End Role="INSUMO" EntitySet="INSUMO" />
+      <End Role="SOLICITUD_PEDIDO_DETALLE_POS" EntitySet="SOLICITUD_PEDIDO_DETALLE_POS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STOCK_INSUMO" Association="Self.FK_STOCK_INSUMO">
+      <End Role="INSUMO" EntitySet="INSUMO" />
+      <End Role="STOCK" EntitySet="STOCK" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_DE_COMPRA_PROVEEDOR" Association="Self.FK_ORDEN_DE_COMPRA_PROVEEDOR">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="ORDEN_DE_COMPRA" EntitySet="ORDEN_DE_COMPRA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_DE_PRODUCCION_DETALLE_POS_ORDEN_DE_PRODUCCION" Association="Self.FK_ORDEN_DE_PRODUCCION_DETALLE_POS_ORDEN_DE_PRODUCCION">
+      <End Role="ORDEN_DE_PRODUCCION" EntitySet="ORDEN_DE_PRODUCCION" />
+      <End Role="ORDEN_DE_PRODUCCION_DETALLE_POS" EntitySet="ORDEN_DE_PRODUCCION_DETALLE_POS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REMITO_PROVEEDOR" Association="Self.FK_REMITO_PROVEEDOR">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="REMITO" EntitySet="REMITO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOLICITUD_PEDIDO_DETALLE_POS_SOLICITUD_PEDIDO" Association="Self.FK_SOLICITUD_PEDIDO_DETALLE_POS_SOLICITUD_PEDIDO">
+      <End Role="SOLICITUD_PEDIDO" EntitySet="SOLICITUD_PEDIDO" />
+      <End Role="SOLICITUD_PEDIDO_DETALLE_POS" EntitySet="SOLICITUD_PEDIDO_DETALLE_POS" />
+    </AssociationSet>
+    <AssociationSet Name="INSUMO_PROVEEDOR" Association="Self.INSUMO_PROVEEDOR">
+      <End Role="INSUMO" EntitySet="INSUMO" />
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SISDal", "SISDAL\SISDal.csproj", "{2B9E5D07-3973-4E5E-A816-190992A9E6AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SISModels", "SISModels\SISModels.csproj", "{6C1BC710-4640-419C-BA88-742E3BCBD86D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SISBll", "SISBll\SISBll.csproj", "{A6B467A6-FF9C-45A7-9C9B-FF13B0A6B814}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B9E5D07-3973-4E5E-A816-190992A9E6AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B9E5D07-3973-4E5E-A816-190992A9E6AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B9E5D07-3973-4E5E-A816-190992A9E6AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B9E5D07-3973-4E5E-A816-190992A9E6AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C1BC710-4640-419C-BA88-742E3BCBD86D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C1BC710-4640-419C-BA88-742E3BCBD86D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C1BC710-4640-419C-BA88-742E3BCBD86D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C1BC710-4640-419C-BA88-742E3BCBD86D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6B467A6-FF9C-45A7-9C9B-FF13B0A6B814}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6B467A6-FF9C-45A7-9C9B-FF13B0A6B814}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6B467A6-FF9C-45A7-9C9B-FF13B0A6B814}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6B467A6-FF9C-45A7-9C9B-FF13B0A6B814}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {521033FC-4509-45FF-B80C-2D64931FBF80}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,442 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SISCOMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ACCESO">
+    <Key>
+      <PropertyRef Name="ACCESO_ID" />
+    </Key>
+    <Property Name="PERMISO_ID" Type="int" />
+    <Property Name="FORMULARIO_ID" Type="varchar" MaxLength="50" />
+    <Property Name="ACCESO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BITACORA">
+    <Key>
+      <PropertyRef Name="BITACORA_ID" />
+    </Key>
+    <Property Name="BITACORA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FECHA" Type="datetime" />
+    <Property Name="USUARIO_ID" Type="int" />
+    <Property Name="TIPO_MENSAJE" Type="varchar" MaxLength="50" />
+    <Property Name="MENSAJE" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="FACTURA">
+    <Key>
+      <PropertyRef Name="FACTURA_ID" />
+    </Key>
+    <Property Name="FACTURA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FECHA" Type="date" />
+    <Property Name="ESTADO" Type="varchar" MaxLength="50" />
+    <Property Name="ORDEN_PROD_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="FACTURA_DETALLE_POS">
+    <Key>
+      <PropertyRef Name="FACTURA_DETALLE_POS_ID" />
+      <PropertyRef Name="FACTURA_ID" />
+      <PropertyRef Name="INSUMO_ID" />
+    </Key>
+    <Property Name="FACTURA_DETALLE_POS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FACTURA_ID" Type="int" Nullable="false" />
+    <Property Name="POSICION" Type="int" />
+    <Property Name="CANTIDAD" Type="int" />
+    <Property Name="PRECIO_UNITARIO" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="INSUMO_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IDIOMA">
+    <Key>
+      <PropertyRef Name="IDIOMA_ID" />
+    </Key>
+    <Property Name="IDIOMA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="INSUMO">
+    <Key>
+      <PropertyRef Name="INSUMO_ID" />
+    </Key>
+    <Property Name="INSUMO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
+    <Property Name="UNIDAD_DE_MEDIDA" Type="varchar" MaxLength="50" />
+    <Property Name="CANTIDAD_MINIMA" Type="int" />
+  </EntityType>
+  <EntityType Name="INSUMO_PROVEEDOR">
+    <Key>
+      <PropertyRef Name="INSUMO_ID" />
+      <PropertyRef Name="PROVEEDOR_ID" />
+    </Key>
+    <Property Name="INSUMO_ID" Type="int" Nullable="false" />
+    <Property Name="PROVEEDOR_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ORDEN_COMPRA_DETALLE_POS">
+    <Key>
+      <PropertyRef Name="ODEN_COMPRA_DETALLE_POS_ID" />
+      <PropertyRef Name="ORDEN_COMPRA_ID" />
+      <PropertyRef Name="INSUMO_ID" />
+    </Key>
+    <Property Name="ODEN_COMPRA_DETALLE_POS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ORDEN_COMPRA_ID" Type="int" Nullable="false" />
+    <Property Name="POSICION" Type="int" />
+    <Property Name="INSUMO_ID" Type="int" Nullable="false" />
+    <Property Name="CANTIDAD" Type="int" />
+    <Property Name="TEXTO" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ORDEN_DE_COMPRA">
+    <Key>
+      <PropertyRef Name="ORDEN_COMPRA_ID" />
+      <PropertyRef Name="PROVEEDOR_ID" />
+    </Key>
+    <Property Name="ORDEN_COMPRA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FECHA" Type="date" />
+    <Property Name="ESTADO" Type="varchar" MaxLength="50" />
+    <Property Name="PROVEEDOR_ID" Type="int" Nullable="false" />
+    <Property Name="SOLICITUD_PEDIDO_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="ORDEN_DE_PRODUCCION">
+    <Key>
+      <PropertyRef Name="ORDEN_PROD_ID" />
+    </Key>
+    <Property Name="ORDEN_PROD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FECHA" Type="date" />
+    <Property Name="TEXTO" Type="varchar" MaxLength="50" />
+    <Property Name="FECHA_LIMITE" Type="date" />
+    <Property Name="ESTADO" Type="varchar" MaxLength="50" />
+    <Property Name="NOMBRE_CLIENTE" Type="varchar" MaxLength="50" />
+    <Property Name="TELEFONO_CLIENTE" Type="varchar" MaxLength="50" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ORDEN_DE_PRODUCCION_DETALLE_POS">
+    <Key>
+      <PropertyRef Name="ORDEN_PROD_DETALLE_POS" />
+      <PropertyRef Name="ORDEN_PROD_ID" />
+      <PropertyRef Name="INSUMO_ID" />
+    </Key>
+    <Property Name="ORDEN_PROD_DETALLE_POS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ORDEN_PROD_ID" Type="int" Nullable="false" />
+    <Property Name="POSICION" Type="int" />
+    <Property Name="CANTIDAD" Type="int" />
+    <Property Name="TEXTO" Type="varchar" MaxLength="100" />
+    <Property Name="INSUMO_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PERMISO">
+    <Key>
+      <PropertyRef Name="PERMISO_ID" />
+    </Key>
+    <Property Name="PERMISO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SISCOM.dbo.POSICION' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="POSICION">
+          <Property Name="POSICION_ID" Type="int" />
+          <Property Name="COLUMNA" Type="int" />
+          <Property Name="FILA" Type="int" />
+        </EntityType>-->
+  <EntityType Name="PROVEEDOR">
+    <Key>
+      <PropertyRef Name="PROVEEDOR_ID" />
+    </Key>
+    <Property Name="PROVEEDOR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
+    <Property Name="DIRECCION" Type="varchar" MaxLength="50" />
+    <Property Name="CODIGO_POSTAL" Type="varchar" MaxLength="50" />
+    <Property Name="TELEFONO" Type="varchar" MaxLength="50" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="REMITO">
+    <Key>
+      <PropertyRef Name="REMITO_ID" />
+      <PropertyRef Name="PROVEEDOR_ID" />
+    </Key>
+    <Property Name="REMITO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FECHA" Type="date" />
+    <Property Name="ESTADO" Type="varchar" MaxLength="50" />
+    <Property Name="ORDEN_COMPRA_ID" Type="int" />
+    <Property Name="PROVEEDOR_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="REMITO_DETALLE_POS">
+    <Key>
+      <PropertyRef Name="REMITO_DETALLE_POS_ID" />
+      <PropertyRef Name="REMITO_ID" />
+    </Key>
+    <Property Name="REMITO_DETALLE_POS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REMITO_ID" Type="int" Nullable="false" />
+    <Property Name="INSUMO_ID" Type="int" />
+    <Property Name="CANTIDAD" Type="int" />
+    <Property Name="POSICION" Type="int" />
+  </EntityType>
+  <EntityType Name="SOLICITUD_PEDIDO">
+    <Key>
+      <PropertyRef Name="SOLICITUD_PEDIDO_ID" />
+    </Key>
+    <Property Name="SOLICITUD_PEDIDO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FECHA" Type="date" />
+    <Property Name="ESTADO" Type="varchar" MaxLength="50" />
+    <Property Name="TEXTO" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="SOLICITUD_PEDIDO_DETALLE_POS">
+    <Key>
+      <PropertyRef Name="SOLICITUD_PEDIDO_DETALLE_POST_ID" />
+      <PropertyRef Name="SOLICITUD_PEDIDO_ID" />
+      <PropertyRef Name="INSUMO_ID" />
+    </Key>
+    <Property Name="SOLICITUD_PEDIDO_DETALLE_POST_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SOLICITUD_PEDIDO_ID" Type="int" Nullable="false" />
+    <Property Name="ESTADO" Type="varchar" MaxLength="50" />
+    <Property Name="INSUMO_ID" Type="int" Nullable="false" />
+    <Property Name="CANTIDAD" Type="int" />
+    <Property Name="TEXTO" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="STOCK">
+    <Key>
+      <PropertyRef Name="STOCK_ID" />
+      <PropertyRef Name="INSUMO_ID" />
+    </Key>
+    <Property Name="STOCK_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="INSUMO_ID" Type="int" Nullable="false" />
+    <Property Name="FECHA_ACTUALIZACION" Type="datetime" />
+    <Property Name="MOTIVO_MOVIMIENTO" Type="varchar" MaxLength="50" />
+    <Property Name="TIPO_MOVIMIENTO" Type="varchar" MaxLength="50" />
+    <Property Name="CANTIDAD_MODIFICADA" Type="int" />
+    <Property Name="CANTIDAD_DISPONIBLE" Type="int" />
+  </EntityType>
+  <EntityType Name="TEXTO">
+    <Key>
+      <PropertyRef Name="TEXTO_ID" />
+      <PropertyRef Name="IDIOMA_ID" />
+      <PropertyRef Name="FORMULARIO_ID" />
+      <PropertyRef Name="COMPONEMTE_ID" />
+    </Key>
+    <Property Name="TEXTO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDIOMA_ID" Type="int" Nullable="false" />
+    <Property Name="FORMULARIO_ID" Type="int" Nullable="false" />
+    <Property Name="COMPONEMTE_ID" Type="int" Nullable="false" />
+    <Property Name="TEXTO" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="USUARIO_ID" />
+      <PropertyRef Name="DNI" />
+    </Key>
+    <Property Name="USUARIO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="50" />
+    <Property Name="DIGITO_VERIFICADOR" Type="int" />
+    <Property Name="SECTOR" Type="varchar" MaxLength="50" />
+    <Property Name="DNI" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="APELLIDO" Type="varchar" MaxLength="50" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="PERMISO_ID" Type="int" />
+  </EntityType>
+  <Association Name="FK_FACTURA_DETALLE_POS_FACTURA">
+    <End Role="FACTURA" Type="Self.FACTURA" Multiplicity="1" />
+    <End Role="FACTURA_DETALLE_POS" Type="Self.FACTURA_DETALLE_POS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FACTURA">
+        <PropertyRef Name="FACTURA_ID" />
+      </Principal>
+      <Dependent Role="FACTURA_DETALLE_POS">
+        <PropertyRef Name="FACTURA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FACTURA_DETALLE_POS_INSUMO">
+    <End Role="INSUMO" Type="Self.INSUMO" Multiplicity="1" />
+    <End Role="FACTURA_DETALLE_POS" Type="Self.FACTURA_DETALLE_POS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INSUMO">
+        <PropertyRef Name="INSUMO_ID" />
+      </Principal>
+      <Dependent Role="FACTURA_DETALLE_POS">
+        <PropertyRef Name="INSUMO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INSUMO_PROVEEDOR_INSUMO">
+    <End Role="INSUMO" Type="Self.INSUMO" Multiplicity="1" />
+    <End Role="INSUMO_PROVEEDOR" Type="Self.INSUMO_PROVEEDOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INSUMO">
+        <PropertyRef Name="INSUMO_ID" />
+      </Principal>
+      <Dependent Role="INSUMO_PROVEEDOR">
+        <PropertyRef Name="INSUMO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INSUMO_PROVEEDOR_PROVEEDOR">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+    <End Role="INSUMO_PROVEEDOR" Type="Self.INSUMO_PROVEEDOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="PROVEEDOR_ID" />
+      </Principal>
+      <Dependent Role="INSUMO_PROVEEDOR">
+        <PropertyRef Name="PROVEEDOR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_COMPRA_DETALLE_POS_INSUMO">
+    <End Role="INSUMO" Type="Self.INSUMO" Multiplicity="1" />
+    <End Role="ORDEN_COMPRA_DETALLE_POS" Type="Self.ORDEN_COMPRA_DETALLE_POS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INSUMO">
+        <PropertyRef Name="INSUMO_ID" />
+      </Principal>
+      <Dependent Role="ORDEN_COMPRA_DETALLE_POS">
+        <PropertyRef Name="INSUMO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_DE_COMPRA_PROVEEDOR">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+    <End Role="ORDEN_DE_COMPRA" Type="Self.ORDEN_DE_COMPRA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="PROVEEDOR_ID" />
+      </Principal>
+      <Dependent Role="ORDEN_DE_COMPRA">
+        <PropertyRef Name="PROVEEDOR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_DE_PRODUCCION_DETALLE_POS_INSUMO">
+    <End Role="INSUMO" Type="Self.INSUMO" Multiplicity="1" />
+    <End Role="ORDEN_DE_PRODUCCION_DETALLE_POS" Type="Self.ORDEN_DE_PRODUCCION_DETALLE_POS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INSUMO">
+        <PropertyRef Name="INSUMO_ID" />
+      </Principal>
+      <Dependent Role="ORDEN_DE_PRODUCCION_DETALLE_POS">
+        <PropertyRef Name="INSUMO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_DE_PRODUCCION_DETALLE_POS_ORDEN_DE_PRODUCCION">
+    <End Role="ORDEN_DE_PRODUCCION" Type="Self.ORDEN_DE_PRODUCCION" Multiplicity="1" />
+    <End Role="ORDEN_DE_PRODUCCION_DETALLE_POS" Type="Self.ORDEN_DE_PRODUCCION_DETALLE_POS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDEN_DE_PRODUCCION">
+        <PropertyRef Name="ORDEN_PROD_ID" />
+      </Principal>
+      <Dependent Role="ORDEN_DE_PRODUCCION_DETALLE_POS">
+        <PropertyRef Name="ORDEN_PROD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REMITO_PROVEEDOR">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+    <End Role="REMITO" Type="Self.REMITO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="PROVEEDOR_ID" />
+      </Principal>
+      <Dependent Role="REMITO">
+        <PropertyRef Name="PROVEEDOR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOLICITUD_PEDIDO_DETALLE_POS_INSUMO">
+    <End Role="INSUMO" Type="Self.INSUMO" Multiplicity="1" />
+    <End Role="SOLICITUD_PEDIDO_DETALLE_POS" Type="Self.SOLICITUD_PEDIDO_DETALLE_POS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INSUMO">
+        <PropertyRef Name="INSUMO_ID" />
+      </Principal>
+      <Dependent Role="SOLICITUD_PEDIDO_DETALLE_POS">
+        <PropertyRef Name="INSUMO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOLICITUD_PEDIDO_DETALLE_POS_SOLICITUD_PEDIDO">
+    <End Role="SOLICITUD_PEDIDO" Type="Self.SOLICITUD_PEDIDO" Multiplicity="1" />
+    <End Role="SOLICITUD_PEDIDO_DETALLE_POS" Type="Self.SOLICITUD_PEDIDO_DETALLE_POS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOLICITUD_PEDIDO">
+        <PropertyRef Name="SOLICITUD_PEDIDO_ID" />
+      </Principal>
+      <Dependent Role="SOLICITUD_PEDIDO_DETALLE_POS">
+        <PropertyRef Name="SOLICITUD_PEDIDO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STOCK_INSUMO">
+    <End Role="INSUMO" Type="Self.INSUMO" Multiplicity="1" />
+    <End Role="STOCK" Type="Self.STOCK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INSUMO">
+        <PropertyRef Name="INSUMO_ID" />
+      </Principal>
+      <Dependent Role="STOCK">
+        <PropertyRef Name="INSUMO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SISCOMModelStoreContainer">
+    <EntitySet Name="ACCESO" EntityType="Self.ACCESO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BITACORA" EntityType="Self.BITACORA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FACTURA" EntityType="Self.FACTURA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FACTURA_DETALLE_POS" EntityType="Self.FACTURA_DETALLE_POS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IDIOMA" EntityType="Self.IDIOMA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INSUMO" EntityType="Self.INSUMO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INSUMO_PROVEEDOR" EntityType="Self.INSUMO_PROVEEDOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDEN_COMPRA_DETALLE_POS" EntityType="Self.ORDEN_COMPRA_DETALLE_POS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDEN_DE_COMPRA" EntityType="Self.ORDEN_DE_COMPRA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDEN_DE_PRODUCCION" EntityType="Self.ORDEN_DE_PRODUCCION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDEN_DE_PRODUCCION_DETALLE_POS" EntityType="Self.ORDEN_DE_PRODUCCION_DETALLE_POS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PERMISO" EntityType="Self.PERMISO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REMITO" EntityType="Self.REMITO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REMITO_DETALLE_POS" EntityType="Self.REMITO_DETALLE_POS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SOLICITUD_PEDIDO" EntityType="Self.SOLICITUD_PEDIDO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SOLICITUD_PEDIDO_DETALLE_POS" EntityType="Self.SOLICITUD_PEDIDO_DETALLE_POS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STOCK" EntityType="Self.STOCK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TEXTO" EntityType="Self.TEXTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_FACTURA_DETALLE_POS_FACTURA" Association="Self.FK_FACTURA_DETALLE_POS_FACTURA">
+      <End Role="FACTURA" EntitySet="FACTURA" />
+      <End Role="FACTURA_DETALLE_POS" EntitySet="FACTURA_DETALLE_POS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FACTURA_DETALLE_POS_INSUMO" Association="Self.FK_FACTURA_DETALLE_POS_INSUMO">
+      <End Role="INSUMO" EntitySet="INSUMO" />
+      <End Role="FACTURA_DETALLE_POS" EntitySet="FACTURA_DETALLE_POS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INSUMO_PROVEEDOR_INSUMO" Association="Self.FK_INSUMO_PROVEEDOR_INSUMO">
+      <End Role="INSUMO" EntitySet="INSUMO" />
+      <End Role="INSUMO_PROVEEDOR" EntitySet="INSUMO_PROVEEDOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INSUMO_PROVEEDOR_PROVEEDOR" Association="Self.FK_INSUMO_PROVEEDOR_PROVEEDOR">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="INSUMO_PROVEEDOR" EntitySet="INSUMO_PROVEEDOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_COMPRA_DETALLE_POS_INSUMO" Association="Self.FK_ORDEN_COMPRA_DETALLE_POS_INSUMO">
+      <End Role="INSUMO" EntitySet="INSUMO" />
+      <End Role="ORDEN_COMPRA_DETALLE_POS" EntitySet="ORDEN_COMPRA_DETALLE_POS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_DE_COMPRA_PROVEEDOR" Association="Self.FK_ORDEN_DE_COMPRA_PROVEEDOR">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="ORDEN_DE_COMPRA" EntitySet="ORDEN_DE_COMPRA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_DE_PRODUCCION_DETALLE_POS_INSUMO" Association="Self.FK_ORDEN_DE_PRODUCCION_DETALLE_POS_INSUMO">
+      <End Role="INSUMO" EntitySet="INSUMO" />
+      <End Role="ORDEN_DE_PRODUCCION_DETALLE_POS" EntitySet="ORDEN_DE_PRODUCCION_DETALLE_POS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_DE_PRODUCCION_DETALLE_POS_ORDEN_DE_PRODUCCION" Association="Self.FK_ORDEN_DE_PRODUCCION_DETALLE_POS_ORDEN_DE_PRODUCCION">
+      <End Role="ORDEN_DE_PRODUCCION" EntitySet="ORDEN_DE_PRODUCCION" />
+      <End Role="ORDEN_DE_PRODUCCION_DETALLE_POS" EntitySet="ORDEN_DE_PRODUCCION_DETALLE_POS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REMITO_PROVEEDOR" Association="Self.FK_REMITO_PROVEEDOR">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="REMITO" EntitySet="REMITO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOLICITUD_PEDIDO_DETALLE_POS_INSUMO" Association="Self.FK_SOLICITUD_PEDIDO_DETALLE_POS_INSUMO">
+      <End Role="INSUMO" EntitySet="INSUMO" />
+      <End Role="SOLICITUD_PEDIDO_DETALLE_POS" EntitySet="SOLICITUD_PEDIDO_DETALLE_POS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOLICITUD_PEDIDO_DETALLE_POS_SOLICITUD_PEDIDO" Association="Self.FK_SOLICITUD_PEDIDO_DETALLE_POS_SOLICITUD_PEDIDO">
+      <End Role="SOLICITUD_PEDIDO" EntitySet="SOLICITUD_PEDIDO" />
+      <End Role="SOLICITUD_PEDIDO_DETALLE_POS" EntitySet="SOLICITUD_PEDIDO_DETALLE_POS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STOCK_INSUMO" Association="Self.FK_STOCK_INSUMO">
+      <End Role="INSUMO" EntitySet="INSUMO" />
+      <End Role="STOCK" EntitySet="STOCK" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
