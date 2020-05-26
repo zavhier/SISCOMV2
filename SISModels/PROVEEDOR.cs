@@ -19,7 +19,6 @@ namespace SISModels
         {
             this.ORDEN_DE_COMPRA = new HashSet<ORDEN_DE_COMPRA>();
             this.REMITO = new HashSet<REMITO>();
-            this.INSUMO = new HashSet<INSUMO>();
         }
     
         public int PROVEEDOR_ID { get; set; }
@@ -34,7 +33,5 @@ namespace SISModels
         public virtual ICollection<ORDEN_DE_COMPRA> ORDEN_DE_COMPRA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<REMITO> REMITO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<INSUMO> INSUMO { get; set; }
     }
 }

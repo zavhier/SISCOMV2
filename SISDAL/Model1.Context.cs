@@ -29,7 +29,6 @@ namespace SISModels
         public virtual DbSet<BITACORA> BITACORA { get; set; }
         public virtual DbSet<FACTURA> FACTURA { get; set; }
         public virtual DbSet<FACTURA_DETALLE_POS> FACTURA_DETALLE_POS { get; set; }
-        public virtual DbSet<IDIOMA> IDIOMA { get; set; }
         public virtual DbSet<INSUMO> INSUMO { get; set; }
         public virtual DbSet<ORDEN_COMPRA_DETALLE_POS> ORDEN_COMPRA_DETALLE_POS { get; set; }
         public virtual DbSet<ORDEN_DE_COMPRA> ORDEN_DE_COMPRA { get; set; }

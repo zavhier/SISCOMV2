@@ -21,11 +21,17 @@ namespace SISModels
         }
     
         public int FACTURA_ID { get; set; }
-        public Nullable<System.DateTime> FECHA { get; set; }
+        public DateTime FECHA { get; set; }
         public string ESTADO { get; set; }
-        public Nullable<int> ORDEN_PROD_ID { get; set; }
+        public int ORDEN_PROD_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FACTURA_DETALLE_POS> FACTURA_DETALLE_POS { get; set; }
+
+        public string CLIENTE_NOMBRE { get; set; }
+        public string CLIENTE_EMAIL { get; set; }
+        public string CLIENTE_TELEFONO { get; set; }
+        public decimal TOTAL { get; set; }
+
     }
 }

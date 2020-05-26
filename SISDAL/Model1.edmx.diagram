@@ -4,26 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="248efa73da74494c9e12ab682e98de1f" Name="Diagram1">
+      <Diagram DiagramId="f163c9e342c346f9ac6598c87649de13" Name="Diagram1">
         <EntityTypeShape EntityType="SISCOMModel.ACCESO" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.BITACORA" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.FACTURA" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.FACTURA_DETALLE_POS" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.IDIOMA" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.INSUMO" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.ORDEN_COMPRA_DETALLE_POS" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.ORDEN_DE_COMPRA" Width="1.5" PointX="5.25" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.ORDEN_DE_PRODUCCION" Width="1.5" PointX="3.75" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.ORDEN_DE_PRODUCCION_DETALLE_POS" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.PERMISO" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.PROVEEDOR" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.REMITO" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.REMITO_DETALLE_POS" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.SOLICITUD_PEDIDO" Width="1.5" PointX="3.75" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.SOLICITUD_PEDIDO_DETALLE_POS" Width="1.5" PointX="6" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.STOCK" Width="1.5" PointX="3" PointY="25.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.TEXTO" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SISCOMModel.USUARIO" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.BITACORA" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.FACTURA" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.FACTURA_DETALLE_POS" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.INSUMO" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.ORDEN_COMPRA_DETALLE_POS" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.ORDEN_DE_COMPRA" Width="1.5" PointX="11" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.ORDEN_DE_PRODUCCION" Width="1.5" PointX="3.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.ORDEN_DE_PRODUCCION_DETALLE_POS" Width="1.5" PointX="6" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.PERMISO" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.PROVEEDOR" Width="1.5" PointX="8.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.REMITO" Width="1.5" PointX="11" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.REMITO_DETALLE_POS" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.SOLICITUD_PEDIDO" Width="1.5" PointX="3.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.SOLICITUD_PEDIDO_DETALLE_POS" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.STOCK" Width="1.5" PointX="3" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.TEXTO" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISCOMModel.USUARIO" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
         <AssociationConnector Association="SISCOMModel.FK_FACTURA_DETALLE_POS_FACTURA" ManuallyRouted="false" />
         <AssociationConnector Association="SISCOMModel.FK_FACTURA_DETALLE_POS_INSUMO" ManuallyRouted="false" />
         <AssociationConnector Association="SISCOMModel.FK_ORDEN_COMPRA_DETALLE_POS_INSUMO" ManuallyRouted="false" />
@@ -34,7 +33,6 @@
         <AssociationConnector Association="SISCOMModel.FK_ORDEN_DE_PRODUCCION_DETALLE_POS_ORDEN_DE_PRODUCCION" ManuallyRouted="false" />
         <AssociationConnector Association="SISCOMModel.FK_REMITO_PROVEEDOR" ManuallyRouted="false" />
         <AssociationConnector Association="SISCOMModel.FK_SOLICITUD_PEDIDO_DETALLE_POS_SOLICITUD_PEDIDO" ManuallyRouted="false" />
-        <AssociationConnector Association="SISCOMModel.INSUMO_PROVEEDOR" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

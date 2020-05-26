@@ -19,8 +19,8 @@ namespace SISModels
         public Nullable<System.DateTime> FECHA_ACTUALIZACION { get; set; }
         public string MOTIVO_MOVIMIENTO { get; set; }
         public string TIPO_MOVIMIENTO { get; set; }
-        public Nullable<int> CANTIDAD_MODIFICADA { get; set; }
-        public Nullable<int> CANTIDAD_DISPONIBLE { get; set; }
+        public int CANTIDAD_MODIFICADA { get; set; }
+        public int CANTIDAD_DISPONIBLE { get; set; }
     
         public virtual INSUMO INSUMO { get; set; }
     }

@@ -22,14 +22,16 @@ namespace SISModels
             this.ORDEN_DE_PRODUCCION_DETALLE_POS = new HashSet<ORDEN_DE_PRODUCCION_DETALLE_POS>();
             this.SOLICITUD_PEDIDO_DETALLE_POS = new HashSet<SOLICITUD_PEDIDO_DETALLE_POS>();
             this.STOCK = new HashSet<STOCK>();
-            this.PROVEEDOR = new HashSet<PROVEEDOR>();
         }
     
         public int INSUMO_ID { get; set; }
         public string DESCRIPCION { get; set; }
         public string UNIDAD_DE_MEDIDA { get; set; }
-        public Nullable<int> CANTIDAD_MINIMA { get; set; }
-    
+        public int CANTIDAD_MINIMA { get; set; }
+        public int PROVEEDOR_ID { get; set; }
+        public Decimal PRECIO{ get; set; }
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FACTURA_DETALLE_POS> FACTURA_DETALLE_POS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -40,7 +42,5 @@ namespace SISModels
         public virtual ICollection<SOLICITUD_PEDIDO_DETALLE_POS> SOLICITUD_PEDIDO_DETALLE_POS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STOCK> STOCK { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PROVEEDOR> PROVEEDOR { get; set; }
     }
 }

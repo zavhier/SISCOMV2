@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SISCOMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SISCOMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ACCESO">
           <Key>
             <PropertyRef Name="ACCESO_ID" />
@@ -31,6 +31,10 @@
           <Property Name="FECHA" Type="date" />
           <Property Name="ESTADO" Type="varchar" MaxLength="50" />
           <Property Name="ORDEN_PROD_ID" Type="int" />
+          <Property Name="CLIENTE_NOMBRE" Type="varchar" MaxLength="50" />
+          <Property Name="CLIENTE_EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="CLIENTE_TELEFONO" Type="varchar" MaxLength="50" />
+          <Property Name="TOTAL" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="FACTURA_DETALLE_POS">
           <Key>
@@ -45,13 +49,6 @@
           <Property Name="PRECIO_UNITARIO" Type="decimal" Precision="18" Scale="0" />
           <Property Name="INSUMO_ID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="IDIOMA">
-          <Key>
-            <PropertyRef Name="IDIOMA_ID" />
-          </Key>
-          <Property Name="IDIOMA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="INSUMO">
           <Key>
             <PropertyRef Name="INSUMO_ID" />
@@ -60,14 +57,8 @@
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
           <Property Name="UNIDAD_DE_MEDIDA" Type="varchar" MaxLength="50" />
           <Property Name="CANTIDAD_MINIMA" Type="int" />
-        </EntityType>
-        <EntityType Name="INSUMO_PROVEEDOR">
-          <Key>
-            <PropertyRef Name="INSUMO_ID" />
-            <PropertyRef Name="PROVEEDOR_ID" />
-          </Key>
-          <Property Name="INSUMO_ID" Type="int" Nullable="false" />
-          <Property Name="PROVEEDOR_ID" Type="int" Nullable="false" />
+          <Property Name="PROVEEDOR_ID" Type="int" />
+          <Property Name="PRECIO" Type="numeric" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="ORDEN_COMPRA_DETALLE_POS">
           <Key>
@@ -126,13 +117,6 @@
           <Property Name="PERMISO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SISCOM.dbo.POSICION' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="POSICION">
-          <Property Name="POSICION_ID" Type="int" />
-          <Property Name="COLUMNA" Type="int" />
-          <Property Name="FILA" Type="int" />
-        </EntityType>-->
         <EntityType Name="PROVEEDOR">
           <Key>
             <PropertyRef Name="PROVEEDOR_ID" />
@@ -254,30 +238,6 @@ advertencia 6013: La tabla o vista 'SISCOM.dbo.POSICION' no tiene definida una c
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_INSUMO_PROVEEDOR_INSUMO">
-          <End Role="INSUMO" Type="Self.INSUMO" Multiplicity="1" />
-          <End Role="INSUMO_PROVEEDOR" Type="Self.INSUMO_PROVEEDOR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="INSUMO">
-              <PropertyRef Name="INSUMO_ID" />
-            </Principal>
-            <Dependent Role="INSUMO_PROVEEDOR">
-              <PropertyRef Name="INSUMO_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_INSUMO_PROVEEDOR_PROVEEDOR">
-          <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
-          <End Role="INSUMO_PROVEEDOR" Type="Self.INSUMO_PROVEEDOR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PROVEEDOR">
-              <PropertyRef Name="PROVEEDOR_ID" />
-            </Principal>
-            <Dependent Role="INSUMO_PROVEEDOR">
-              <PropertyRef Name="PROVEEDOR_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ORDEN_COMPRA_DETALLE_POS_INSUMO">
           <End Role="INSUMO" Type="Self.INSUMO" Multiplicity="1" />
           <End Role="ORDEN_COMPRA_DETALLE_POS" Type="Self.ORDEN_COMPRA_DETALLE_POS" Multiplicity="*" />
@@ -379,9 +339,7 @@ advertencia 6013: La tabla o vista 'SISCOM.dbo.POSICION' no tiene definida una c
           <EntitySet Name="BITACORA" EntityType="Self.BITACORA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FACTURA" EntityType="Self.FACTURA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FACTURA_DETALLE_POS" EntityType="Self.FACTURA_DETALLE_POS" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="IDIOMA" EntityType="Self.IDIOMA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INSUMO" EntityType="Self.INSUMO" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="INSUMO_PROVEEDOR" EntityType="Self.INSUMO_PROVEEDOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ORDEN_COMPRA_DETALLE_POS" EntityType="Self.ORDEN_COMPRA_DETALLE_POS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ORDEN_DE_COMPRA" EntityType="Self.ORDEN_DE_COMPRA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ORDEN_DE_PRODUCCION" EntityType="Self.ORDEN_DE_PRODUCCION" Schema="dbo" store:Type="Tables" />
@@ -402,14 +360,6 @@ advertencia 6013: La tabla o vista 'SISCOM.dbo.POSICION' no tiene definida una c
           <AssociationSet Name="FK_FACTURA_DETALLE_POS_INSUMO" Association="Self.FK_FACTURA_DETALLE_POS_INSUMO">
             <End Role="INSUMO" EntitySet="INSUMO" />
             <End Role="FACTURA_DETALLE_POS" EntitySet="FACTURA_DETALLE_POS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_INSUMO_PROVEEDOR_INSUMO" Association="Self.FK_INSUMO_PROVEEDOR_INSUMO">
-            <End Role="INSUMO" EntitySet="INSUMO" />
-            <End Role="INSUMO_PROVEEDOR" EntitySet="INSUMO_PROVEEDOR" />
-          </AssociationSet>
-          <AssociationSet Name="FK_INSUMO_PROVEEDOR_PROVEEDOR" Association="Self.FK_INSUMO_PROVEEDOR_PROVEEDOR">
-            <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
-            <End Role="INSUMO_PROVEEDOR" EntitySet="INSUMO_PROVEEDOR" />
           </AssociationSet>
           <AssociationSet Name="FK_ORDEN_COMPRA_DETALLE_POS_INSUMO" Association="Self.FK_ORDEN_COMPRA_DETALLE_POS_INSUMO">
             <End Role="INSUMO" EntitySet="INSUMO" />
@@ -444,8 +394,7 @@ advertencia 6013: La tabla o vista 'SISCOM.dbo.POSICION' no tiene definida una c
             <End Role="STOCK" EntitySet="STOCK" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SISCOMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -476,6 +425,10 @@ advertencia 6013: La tabla o vista 'SISCOM.dbo.POSICION' no tiene definida una c
           <Property Name="ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ORDEN_PROD_ID" Type="Int32" />
           <NavigationProperty Name="FACTURA_DETALLE_POS" Relationship="Self.FK_FACTURA_DETALLE_POS_FACTURA" FromRole="FACTURA" ToRole="FACTURA_DETALLE_POS" />
+          <Property Name="CLIENTE_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CLIENTE_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CLIENTE_TELEFONO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TOTAL" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="FACTURA_DETALLE_POS">
           <Key>
@@ -492,13 +445,6 @@ advertencia 6013: La tabla o vista 'SISCOM.dbo.POSICION' no tiene definida una c
           <NavigationProperty Name="FACTURA" Relationship="Self.FK_FACTURA_DETALLE_POS_FACTURA" FromRole="FACTURA_DETALLE_POS" ToRole="FACTURA" />
           <NavigationProperty Name="INSUMO" Relationship="Self.FK_FACTURA_DETALLE_POS_INSUMO" FromRole="FACTURA_DETALLE_POS" ToRole="INSUMO" />
         </EntityType>
-        <EntityType Name="IDIOMA">
-          <Key>
-            <PropertyRef Name="IDIOMA_ID" />
-          </Key>
-          <Property Name="IDIOMA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="INSUMO">
           <Key>
             <PropertyRef Name="INSUMO_ID" />
@@ -507,12 +453,13 @@ advertencia 6013: La tabla o vista 'SISCOM.dbo.POSICION' no tiene definida una c
           <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UNIDAD_DE_MEDIDA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CANTIDAD_MINIMA" Type="Int32" />
+          <Property Name="PROVEEDOR_ID" Type="Int32" />
           <NavigationProperty Name="FACTURA_DETALLE_POS" Relationship="Self.FK_FACTURA_DETALLE_POS_INSUMO" FromRole="INSUMO" ToRole="FACTURA_DETALLE_POS" />
           <NavigationProperty Name="ORDEN_COMPRA_DETALLE_POS" Relationship="Self.FK_ORDEN_COMPRA_DETALLE_POS_INSUMO" FromRole="INSUMO" ToRole="ORDEN_COMPRA_DETALLE_POS" />
           <NavigationProperty Name="ORDEN_DE_PRODUCCION_DETALLE_POS" Relationship="Self.FK_ORDEN_DE_PRODUCCION_DETALLE_POS_INSUMO" FromRole="INSUMO" ToRole="ORDEN_DE_PRODUCCION_DETALLE_POS" />
           <NavigationProperty Name="SOLICITUD_PEDIDO_DETALLE_POS" Relationship="Self.FK_SOLICITUD_PEDIDO_DETALLE_POS_INSUMO" FromRole="INSUMO" ToRole="SOLICITUD_PEDIDO_DETALLE_POS" />
           <NavigationProperty Name="STOCK" Relationship="Self.FK_STOCK_INSUMO" FromRole="INSUMO" ToRole="STOCK" />
-          <NavigationProperty Name="PROVEEDOR" Relationship="Self.INSUMO_PROVEEDOR" FromRole="INSUMO" ToRole="PROVEEDOR" />
+          <Property Name="PRECIO" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="ORDEN_COMPRA_DETALLE_POS">
           <Key>
@@ -589,7 +536,6 @@ advertencia 6013: La tabla o vista 'SISCOM.dbo.POSICION' no tiene definida una c
           <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ORDEN_DE_COMPRA" Relationship="Self.FK_ORDEN_DE_COMPRA_PROVEEDOR" FromRole="PROVEEDOR" ToRole="ORDEN_DE_COMPRA" />
           <NavigationProperty Name="REMITO" Relationship="Self.FK_REMITO_PROVEEDOR" FromRole="PROVEEDOR" ToRole="REMITO" />
-          <NavigationProperty Name="INSUMO" Relationship="Self.INSUMO_PROVEEDOR" FromRole="PROVEEDOR" ToRole="INSUMO" />
         </EntityType>
         <EntityType Name="REMITO">
           <Key>
@@ -801,16 +747,11 @@ advertencia 6013: La tabla o vista 'SISCOM.dbo.POSICION' no tiene definida una c
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="INSUMO_PROVEEDOR">
-          <End Role="INSUMO" Type="Self.INSUMO" Multiplicity="*" />
-          <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="SISCOMEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ACCESO" EntityType="Self.ACCESO" />
           <EntitySet Name="BITACORA" EntityType="Self.BITACORA" />
           <EntitySet Name="FACTURA" EntityType="Self.FACTURA" />
           <EntitySet Name="FACTURA_DETALLE_POS" EntityType="Self.FACTURA_DETALLE_POS" />
-          <EntitySet Name="IDIOMA" EntityType="Self.IDIOMA" />
           <EntitySet Name="INSUMO" EntityType="Self.INSUMO" />
           <EntitySet Name="ORDEN_COMPRA_DETALLE_POS" EntityType="Self.ORDEN_COMPRA_DETALLE_POS" />
           <EntitySet Name="ORDEN_DE_COMPRA" EntityType="Self.ORDEN_DE_COMPRA" />
@@ -865,10 +806,6 @@ advertencia 6013: La tabla o vista 'SISCOM.dbo.POSICION' no tiene definida una c
             <End Role="SOLICITUD_PEDIDO" EntitySet="SOLICITUD_PEDIDO" />
             <End Role="SOLICITUD_PEDIDO_DETALLE_POS" EntitySet="SOLICITUD_PEDIDO_DETALLE_POS" />
           </AssociationSet>
-          <AssociationSet Name="INSUMO_PROVEEDOR" Association="Self.INSUMO_PROVEEDOR">
-            <End Role="INSUMO" EntitySet="INSUMO" />
-            <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -899,6 +836,10 @@ advertencia 6013: La tabla o vista 'SISCOM.dbo.POSICION' no tiene definida una c
           <EntitySetMapping Name="FACTURA">
             <EntityTypeMapping TypeName="SISCOMModel.FACTURA">
               <MappingFragment StoreEntitySet="FACTURA">
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                <ScalarProperty Name="CLIENTE_TELEFONO" ColumnName="CLIENTE_TELEFONO" />
+                <ScalarProperty Name="CLIENTE_EMAIL" ColumnName="CLIENTE_EMAIL" />
+                <ScalarProperty Name="CLIENTE_NOMBRE" ColumnName="CLIENTE_NOMBRE" />
                 <ScalarProperty Name="FACTURA_ID" ColumnName="FACTURA_ID" />
                 <ScalarProperty Name="FECHA" ColumnName="FECHA" />
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
@@ -918,21 +859,15 @@ advertencia 6013: La tabla o vista 'SISCOM.dbo.POSICION' no tiene definida una c
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="IDIOMA">
-            <EntityTypeMapping TypeName="SISCOMModel.IDIOMA">
-              <MappingFragment StoreEntitySet="IDIOMA">
-                <ScalarProperty Name="IDIOMA_ID" ColumnName="IDIOMA_ID" />
-                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="INSUMO">
             <EntityTypeMapping TypeName="SISCOMModel.INSUMO">
               <MappingFragment StoreEntitySet="INSUMO">
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
                 <ScalarProperty Name="INSUMO_ID" ColumnName="INSUMO_ID" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
                 <ScalarProperty Name="UNIDAD_DE_MEDIDA" ColumnName="UNIDAD_DE_MEDIDA" />
                 <ScalarProperty Name="CANTIDAD_MINIMA" ColumnName="CANTIDAD_MINIMA" />
+                <ScalarProperty Name="PROVEEDOR_ID" ColumnName="PROVEEDOR_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1089,14 +1024,6 @@ advertencia 6013: La tabla o vista 'SISCOM.dbo.POSICION' no tiene definida una c
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="INSUMO_PROVEEDOR" TypeName="SISCOMModel.INSUMO_PROVEEDOR" StoreEntitySet="INSUMO_PROVEEDOR">
-            <EndProperty Name="INSUMO">
-              <ScalarProperty Name="INSUMO_ID" ColumnName="INSUMO_ID" />
-            </EndProperty>
-            <EndProperty Name="PROVEEDOR">
-              <ScalarProperty Name="PROVEEDOR_ID" ColumnName="PROVEEDOR_ID" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

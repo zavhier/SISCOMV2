@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SISDAL.CRUD
 {
-    interface ICrud <T>
+    public interface ICrud <T>
     {
 
         List<T> getAll();
